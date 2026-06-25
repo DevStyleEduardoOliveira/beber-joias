@@ -1,0 +1,1369 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+
+    background: #f7f4ef;
+
+    color: #111111;
+
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+
+    --color-background: #f7f4ef;
+
+    --color-white: #ffffff;
+    --color-black: #111111;
+
+    --color-text: #111111;
+
+    --color-text-soft: #5f5f63;
+
+    --color-border:
+        rgba(0,0,0,0.06);
+
+    --transition:
+        all .35s cubic-bezier(.4,0,.2,1);
+
+    --container:
+        1440px;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container{
+
+    width: 100%;
+
+    max-width: var(--container);
+
+    margin: 0 auto;
+
+    padding: 0 1.5rem;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+img{
+    display: block;
+    width: 100%;
+}
+
+ul{
+    list-style: none;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    width: 100%;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    z-index: 999;
+
+    background:
+        rgba(247,244,239,0.78);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border-bottom:
+        1px solid rgba(0,0,0,0.03);
+}
+
+.header__content{
+
+    height: 84px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo{
+
+    width: 145px;
+
+    position: relative;
+    z-index: 1001;
+}
+
+.logo__image{
+
+    width: 100%;
+    object-fit: contain;
+}
+
+/* =========================================================
+   MENU TOGGLE
+========================================================= */
+
+.menu-toggle{
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 6px;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 1001;
+}
+
+.menu-toggle span{
+
+    width: 24px;
+    height: 1.5px;
+
+    background: #111111;
+
+    border-radius: 50px;
+
+    transition: var(--transition);
+}
+
+/* =========================================================
+   MENU ACTIVE
+========================================================= */
+
+.menu-toggle.active span:nth-child(1){
+
+    transform:
+        rotate(45deg)
+        translateY(10px);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3){
+
+    transform:
+        rotate(-45deg)
+        translateY(-10px);
+}
+
+/* =========================================================
+   NAV MOBILE
+========================================================= */
+
+.nav{
+
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    width: 100%;
+    height: 100vh;
+
+    background:
+        rgba(247,244,239,0.97);
+
+    backdrop-filter: blur(18px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .45s ease;
+}
+
+.nav.active{
+    right: 0;
+}
+
+.nav__list{
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 2.6rem;
+}
+
+.nav__link{
+
+    font-size: 2rem;
+
+    font-weight: 400;
+
+    letter-spacing: -1px;
+
+    color: #111111;
+
+    position: relative;
+
+    transition: var(--transition);
+}
+
+.nav__link::after{
+
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 1px;
+
+    background: #111111;
+
+    transition: var(--transition);
+}
+
+.nav__link:hover::after{
+    width: 100%;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    text-align: center;
+    padding: 30px;
+}
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.hero::before{
+
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        url('../assets/images/f4.jpg')
+        center center / cover no-repeat;
+
+    z-index: -4;
+
+    transform: scale(1.03);
+
+    /*
+        O segredo da Swarovski:
+        NÃO exagerar no blur
+    */
+
+    filter:
+        brightness(0.96)
+        contrast(1.12)
+        saturate(1.04);
+
+    opacity: .88;
+
+    animation:
+        heroZoom 6s cubic-bezier(.4,0,.2,1)
+        infinite alternate;
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.hero::after{
+
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(247,244,239,0.22),
+            rgba(247,244,239,0.10),
+            rgba(247,244,239,0.18)
+        );
+
+    z-index: -3;
+}
+
+/* =========================================================
+   SOFT LIGHT
+========================================================= */
+
+.hero__overlay{
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255,255,255,0.28),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(255,255,255,0.08),
+            transparent 35%
+        );
+
+    z-index: -2;
+}
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero__content{
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding-top: 120px;
+    padding-bottom: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 2rem;
+
+    /*
+        Floating editorial effect
+    */
+
+    transform:
+        translateY(-40px);
+}
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.hero__subtitle{
+
+    font-size: .82rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 5px;
+
+    color: #5f5f63;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.hero__title{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size:
+        clamp(3rem, 4vw, 10rem);
+
+    line-height: .85;
+
+    font-weight: 450;
+
+    letter-spacing: -4px;
+
+    color: #111111;
+
+    max-width: 1000px;
+
+    text-shadow:
+        0 4px 18px rgba(255,255,255,0.18);
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.hero__description{
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    color: #3f3f42;
+
+    max-width: 720px;
+    
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.hero__button{
+
+    width: fit-content;
+
+    margin-top: .5rem;
+
+    padding:
+        1rem 2.8rem;
+
+    border:
+        1px solid rgba(17,17,17,0.18);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: #111111;
+
+    font-size: .95rem;
+    font-weight: 500;
+
+    transition: var(--transition);
+}
+
+.hero__button:hover{
+
+    background: #111111;
+
+    color: #ffffff;
+
+    transform:
+        translateY(-2px);
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes heroZoom{
+
+    0%{
+
+        transform:
+            scale(1.04)
+            translateX(0px)
+            translateY(0px);
+    }
+
+    100%{
+
+        transform:
+            scale(1.10)
+            translateX(-8px)
+            translateY(-4px);
+    }
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 1024px){
+
+    .container{
+        padding: 0 3rem;
+    }
+
+    .menu-toggle{
+        display: none;
+    }
+
+    .nav{
+
+        position: static;
+
+        width: auto;
+        height: auto;
+
+        background: transparent;
+
+        backdrop-filter: none;
+    }
+
+    .nav__list{
+
+        flex-direction: row;
+
+        gap: 2.4rem;
+    }
+
+    .nav__link{
+
+        font-size: .92rem;
+
+        font-weight: 500;
+
+        letter-spacing: 0;
+    }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1440px){
+
+    .hero__content{
+        max-width: 1200px;
+    }
+
+    .hero__title{
+        font-size: 9rem;
+    }
+}
+
+/* ==================================================
+   CATEGORIES
+================================================== */
+
+.categories{
+
+    padding: 8rem 0;
+
+    background: #f7f4ef;
+}
+
+.section-heading{
+
+    text-align: center;
+
+    margin-bottom: 4rem;
+}
+
+.section-subtitle{
+
+    display: block;
+
+    margin-bottom: 1rem;
+
+    font-size: .85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    color: #777;
+}
+
+.section-title{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(2.5rem,5vw,4.5rem);
+
+    font-weight: 400;
+
+    letter-spacing: -3px;
+}
+
+.categories-grid{
+
+    display: grid;
+
+    gap: 2rem;
+}
+
+.category-card{
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    min-height: 500px;
+
+    display: flex;
+    align-items: flex-end;
+
+    background: #fff;
+
+    transition: .5s ease;
+}
+
+.category-card img{
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .8s ease;
+}
+
+.category-card::before{
+
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.08)
+    );
+
+    z-index: 1;
+}
+
+.category-content{
+
+    position: relative;
+
+    z-index: 2;
+
+    padding: 2rem;
+
+    color: white;
+}
+
+.category-content h3{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 2rem;
+
+    font-weight: 400;
+
+    margin-bottom: .6rem;
+}
+
+.category-content span{
+
+    opacity: .9;
+}
+
+.category-card:hover img{
+
+    transform:
+        scale(1.08);
+}
+
+@media(min-width:1024px){
+
+    .categories-grid{
+
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+}
+/* ==================================================
+   FEATURED COLLECTION
+================================================== */
+
+.featured-collection{
+
+    padding: 10rem 0;
+
+    background: #ffffff;
+}
+
+.featured-grid{
+
+    display: grid;
+
+    gap: 4rem;
+
+    align-items: center;
+}
+
+.featured-image{
+
+    overflow: hidden;
+
+    border-radius: 32px;
+}
+
+.featured-image img{
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .8s ease;
+}
+
+.featured-image:hover img{
+
+    transform: scale(1.05);
+}
+
+.featured-content{
+
+    max-width: 550px;
+}
+
+.featured-tag{
+
+    display: inline-block;
+
+    margin-bottom: 1.2rem;
+
+    font-size: .85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    color: #777;
+}
+
+.featured-title{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(3rem,5vw,5.5rem);
+
+    line-height: .95;
+
+    font-weight: 400;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 2rem;
+}
+
+.featured-description{
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    color: #555;
+
+    margin-bottom: 2rem;
+}
+
+.featured-button{
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 1rem 2.5rem;
+
+    border: 1px solid #111;
+
+    border-radius: 999px;
+
+    transition: .35s ease;
+}
+
+.featured-button:hover{
+
+    background: #111;
+
+    color: white;
+}
+
+@media(min-width:1024px){
+
+    .featured-grid{
+
+        grid-template-columns:
+            1.2fr
+            1fr;
+    }
+}
+/* ==================================================
+   LUXURY PRODUCTS
+================================================== */
+
+.luxury-products{
+
+    padding: 10rem 0;
+
+    background: #f7f4ef;
+}
+
+.products-grid{
+
+    display: grid;
+
+    gap: 3rem;
+}
+
+.product-card{
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    transition: .5s ease;
+}
+
+.product-image{
+
+    overflow: hidden;
+}
+
+.product-image img{
+
+    width: 100%;
+
+    height: 650px;
+
+    object-fit: cover;
+
+    transition: .8s ease;
+}
+
+.product-card:hover img{
+
+    transform: scale(1.08);
+}
+
+.product-info{
+
+    padding: 1rem;
+}
+
+.product-info h3{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 2rem;
+
+    font-weight: 400;
+
+    margin-bottom: .8rem;
+}
+
+.product-info p{
+
+    color: #666;
+
+    line-height: 1.8;
+
+    margin-bottom: 1rem;
+}
+
+.product-info span{
+
+    font-size: 1.1rem;
+
+    font-weight: 600;
+}
+
+@media(min-width:1024px){
+
+    .products-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+}
+
+/* ==================================================
+   CUSTOM JEWELRY
+================================================== */
+
+.custom-jewelry{
+
+    padding: 6rem 0;
+
+    background: #ffffff;
+}
+
+.custom-grid{
+
+    display: grid;
+
+    gap: 2.5rem;
+
+    align-items: center;
+}
+
+.custom-tag{
+
+    display: inline-block;
+
+    margin-bottom: 1rem;
+
+    font-size: .85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    color: #8d7a5d;
+}
+
+.custom-title{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(3rem,5vw,5.5rem);
+
+    line-height: .95;
+
+    letter-spacing: -4px;
+
+    font-weight: 400;
+
+    margin-bottom: 1.2rem;
+
+    max-width: 700px;
+}
+
+.custom-description{
+
+    margin-bottom: 1rem;
+}
+
+.custom-list{
+
+    margin-top: 1.2rem;
+    margin-bottom: 1.8rem;
+
+    gap: .75rem;
+}
+
+.custom-list li{
+
+    color: #333;
+
+    font-size: 1rem;
+}
+
+.custom-button{
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem 2.8rem;
+
+    border-radius: 999px;
+
+    border: 1px solid #111;
+
+    transition: .35s ease;
+}
+
+.custom-button:hover{
+
+    background: #111;
+
+    color: white;
+}
+
+.custom-image{
+
+    overflow: hidden;
+
+    border-radius: 32px;
+}
+
+.custom-image img{
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .8s ease;
+}
+
+.custom-content{
+
+    max-width: 580px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: .9rem;
+}
+.custom-image:hover img{
+
+    transform: scale(1.05);
+}
+
+@media(min-width:1024px){
+
+    .custom-grid{
+
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+}
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.footer{
+
+    background: #f7f4ef;
+
+    padding-top: 8rem;
+
+    border-top:
+        1px solid rgba(0,0,0,0.05);
+}
+
+/* ==================================================
+   TOP
+================================================== */
+
+.footer-top{
+
+    text-align: center;
+
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    padding-bottom: 5rem;
+}
+
+.footer-logo{
+
+    width: 100%;
+
+    max-width: 1400px;
+
+    height: clamp(
+        250px,
+        45vw,
+        550px
+    );
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 32px;
+
+    margin: 0 auto 4rem;
+
+    display: block;
+}
+
+.footer-title{
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(2.5rem,5vw,4rem);
+
+    font-weight: 400;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 1.5rem;
+}
+
+.footer-description{
+
+    color: #666;
+
+    line-height: 1.9;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+}
+
+/* ==================================================
+   CONTENT
+================================================== */
+
+.footer-content{
+
+    display: grid;
+
+    gap: 4rem;
+
+    padding: 4rem 0;
+
+    border-top:
+        1px solid rgba(0,0,0,0.05);
+
+    border-bottom:
+        1px solid rgba(0,0,0,0.05);
+}
+
+.footer-column{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.footer-column h3{
+
+    font-size: .9rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 1rem;
+}
+
+.footer-column a{
+
+    color: #666;
+
+    transition: .3s ease;
+}
+
+.footer-column a:hover{
+
+    color: #111;
+}
+
+/* ==================================================
+   BOTTOM
+================================================== */
+
+.footer-bottom{
+
+    text-align: center;
+
+    padding: 2rem 0;
+
+    color: #777;
+
+    font-size: .9rem;
+}
+
+/* ==================================================
+   DESKTOP
+================================================== */
+
+@media(min-width:1024px){
+
+    .footer-content{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        max-width: 900px;
+
+        margin: 0 auto;
+    }
+}
+
+/* ==================================================
+   WHATSAPP PREMIUM
+================================================== */
+
+.whatsapp-floating{
+
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 54px;
+    height: 54px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #111111;
+
+    background:
+        rgba(255,255,255,0.78);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border:
+        1px solid rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.08);
+
+    z-index: 9999;
+
+    transition:
+        all .35s cubic-bezier(.4,0,.2,1);
+}
+
+.whatsapp-floating:hover{
+
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(255,255,255,0.95);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.12);
+}
+
+.whatsapp-floating svg{
+
+    width: 20px;
+    height: 20px;
+}
+/* ==========================================
+   WHATSAPP FLOATING PREMIUM
+========================================== */
+
+.whatsapp-floating{
+
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.85);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(0,0,0,0.06);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+    transition:
+        all .35s cubic-bezier(.4,0,.2,1);
+
+    z-index: 9999;
+}
+
+.whatsapp-floating:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.05);
+
+    box-shadow:
+        0 16px 40px rgba(0,0,0,0.12);
+
+    background:
+        rgba(255,255,255,0.95);
+}
+
+.whatsapp-icon{
+
+    width: 26px;
+    height: 26px;
+
+    fill: #25D366;
+}
+
+@media (max-width: 768px){
+
+    .whatsapp-floating{
+
+        width: 54px;
+        height: 54px;
+
+        right: 18px;
+        bottom: 18px;
+    }
+
+    .whatsapp-icon{
+
+        width: 24px;
+        height: 24px;
+    }
+}
+.whatsapp-floating::before{
+
+    content: '';
+
+    position: absolute;
+
+    inset: 3px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    pointer-events: none;
+}
